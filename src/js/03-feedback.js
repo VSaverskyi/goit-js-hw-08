@@ -8,7 +8,7 @@ const SAVED_KEY = 'feedback-form-state';
 const formData = {};
 
 onUpdatePage();
-form.addEventListener('input', onInputForm);
+form.addEventListener('input', throttle(onInputForm, 500));
 form.addEventListener('submit', onSubmitForm);
 
 function onUpdatePage() {
@@ -32,12 +32,9 @@ function onUpdatePage() {
   }
 }
 
-function onInputForm(e) {
-  const {
-    elements: { email, message },
-  } = e.currentTarget;
-  formData.email = email.value;
-  formData.message = message.value;
+function onInputForm() {
+  formData.email = emailInput.value;
+  formData.message = messageText.value;
   localStorage.setItem(SAVED_KEY, JSON.stringify(formData));
 }
 
