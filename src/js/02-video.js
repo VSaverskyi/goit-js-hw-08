@@ -13,7 +13,7 @@ const getCurrentTime = function () {
 const throttledOnTimeupdate = throttle(onTimeupdate, 1000);
 
 player
-  .setCurrentTime(getCurrentTime())
+  .setCurrentTime(getCurrentTime() || 0)
   .then(function (seconds) {})
   .catch(function (error) {
     switch (error.name) {
